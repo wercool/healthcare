@@ -1,0 +1,17 @@
+{
+  "name": "healthcare",
+  "version": "1.0.0",
+  "description": "Health Care Project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "watch": "nodemon app"
+  },
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
