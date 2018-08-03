@@ -15,18 +15,21 @@
           <h1 class="jumbotron-heading">Test Skeleton Capture</h1>
           <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
 
-          <div id='main' style='display:none'>
-              <video id="video" playsinline style=" -moz-transform: scaleX(-1);
+          <link href="/css/roller.css" rel="stylesheet">
+
+          <div class="lds-hourglass" id="loader"></div>
+
+          <div id="detectionContainer" style="display:none">
+              <video id="video" playsinline="" style=" -moz-transform: scaleX(-1);
               -o-transform: scaleX(-1);
               -webkit-transform: scaleX(-1);
               transform: scaleX(-1);
               display: none;
               ">
               </video>
-              <canvas id="output" />
+              <canvas id="detectionOutput"></canvas>
           </div>
-          <script src="/js/camera.js"></script>
-
+          <script src="/js/pose-estimator.js"></script>
 
           <p>
             <a href="#" class="btn btn-primary my-2">Main call to action</a>
