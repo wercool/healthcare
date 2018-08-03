@@ -1,5 +1,14 @@
 var express = require('express');
+var https = require('https');
+var fs = require('fs');
 var app = express();
+
+var sslOptions = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+  passphrase: 'q1w2e3r4t5'
+};
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -28,7 +37,11 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// listen on port 3000
-app.listen(3000, function () {
-  console.log('Express app listening on port 3000');
+// // listen on port 3000
+// app.listen(3000, function () {
+//   console.log('Express app listening on port 3000');
+// });
+
+https.createServer(sslOptions, app).listen(8443, function () {
+  console.log('Express app listening on port 8443');
 });
