@@ -5,6 +5,17 @@ const buffer                = require('vinyl-buffer');
 const color                 = require('gulp-color');
 
 var initObj = {};
+if (process.argv.indexOf('--jssrc') > -1)
+{
+    initObj.jssrc = process.argv[process.argv.indexOf('--jssrc') + 1];
+    if (!initObj.jssrc) {
+        console.log(color('--jssrc [?] is missing!', 'RED'));
+        process.exit();
+    }
+} else {
+    console.log(color('--jssrc is missing!', 'RED'));
+    process.exit();
+}
 
 gulp.task('compile', function() {
     return browserify(initObj.jssrc)
@@ -18,17 +29,6 @@ gulp.task('compile', function() {
 });
 
 gulp.task('watch', function(){
-    if (process.argv.indexOf('--jssrc') > -1)
-    {
-        initObj.jssrc = process.argv[process.argv.indexOf('--jssrc') + 1];
-        if (!initObj.jssrc) {
-            console.log(color('--jssrc [?] is missing!', 'RED'));
-            process.exit();
-        }
-    } else {
-        console.log(color('--jssrc is missing!', 'RED'));
-        process.exit();
-    }
     gulp.watch([
         '**/*.js',
         '!node_modules/**',

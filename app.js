@@ -30,14 +30,14 @@ app.use(function(req, res, next) {
 // error handler
 // define as the last app.use callback
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.json('error', {
-    message: err.message,
-    error: {}
-  });
+  res.locals.error = err;
+  if (err.status >= 100 && err.status < 600)
+    res.status(err.status);
+  else
+    res.status(500);
 });
 
-// // listen on port 3000
+// listen on port 3000
 // app.listen(3000, function () {
 //   console.log('Express app listening on port 3000');
 // });

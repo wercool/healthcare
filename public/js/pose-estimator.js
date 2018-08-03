@@ -40799,7 +40799,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 
 },{"./util/minimal":258,"./writer":259}],261:[function(require,module,exports){
 (function (global){
-/*! https://mths.be/punycode v1.4.1 by @mathias */
+/*! https://mths.be/punycode v1.3.2 by @mathias */
 ;(function(root) {
 
 	/** Detect free variables */
@@ -40865,7 +40865,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 	 * @returns {Error} Throws a `RangeError` with the applicable error message.
 	 */
 	function error(type) {
-		throw new RangeError(errors[type]);
+		throw RangeError(errors[type]);
 	}
 
 	/**
@@ -41012,7 +41012,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 
 	/**
 	 * Bias adaptation function as per section 3.4 of RFC 3492.
-	 * https://tools.ietf.org/html/rfc3492#section-3.4
+	 * http://tools.ietf.org/html/rfc3492#section-3.4
 	 * @private
 	 */
 	function adapt(delta, numPoints, firstTime) {
@@ -41287,7 +41287,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 		 * @memberOf punycode
 		 * @type String
 		 */
-		'version': '1.4.1',
+		'version': '1.3.2',
 		/**
 		 * An object of methods to convert from JavaScript's internal character
 		 * representation (UCS-2) to Unicode code points, and back.
@@ -41317,17 +41317,14 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 			return punycode;
 		});
 	} else if (freeExports && freeModule) {
-		if (module.exports == freeExports) {
-			// in Node.js, io.js, or RingoJS v0.8.0+
+		if (module.exports == freeExports) { // in Node.js or RingoJS v0.8.0+
 			freeModule.exports = punycode;
-		} else {
-			// in Narwhal or RingoJS v0.7.0-
+		} else { // in Narwhal or RingoJS v0.7.0-
 			for (key in punycode) {
 				punycode.hasOwnProperty(key) && (freeExports[key] = punycode[key]);
 			}
 		}
-	} else {
-		// in Rhino or a web browser
+	} else { // in Rhino or a web browser
 		root.punycode = punycode;
 	}
 
